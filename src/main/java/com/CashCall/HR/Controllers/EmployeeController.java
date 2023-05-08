@@ -26,6 +26,7 @@ public class EmployeeController {
 
     /* Controller Methods */
 
+    // => Retrieving Controller Methods:
     @GetMapping("/employee")
     public List<Employee> getAllEmployees() {
         return employeeServices.getAllEmployees();
@@ -59,33 +60,36 @@ public class EmployeeController {
         return employeeServices.employeeSearch(firstName, lastName);
     }
 
+
+    // => Posting Controller Methods:
+    @PostMapping("employee/addNewEmp")
+    public String addNewEmp(@RequestBody Employee newEmp) {
+        // ToDo: Check If the Emp Saved or Not. f
+        // try {} catch () {}
+
+        employeeServices.addNewEmp(newEmp);
+
+        return "Employee: " + newEmp.getFirstName() + " Saved Successfully";
+        /*
+         * Note: We use the @RequestBody Annotation with the POST method's Requests.
+         * */
+    }
+
+    // => Updating Controller Methods:
+    @PutMapping("employee/updateEmp")
+    public String updateEmp(@RequestBody Employee emp) {
+        employeeServices.updateEmp(emp);
+
+        return "Employee: " + emp.getFirstName() + " Updated Successfully";
+    }
+
+    // => Deleting Controller Methods:
+    @DeleteMapping("employee/{id}")
+    public String removeEmp(@PathVariable(name = "id") long id) {
+        employeeServices.deleteEmp(id);
+
+        return "Employee of Id:  " + String.valueOf(id) + " Deleted Successfully";
+    }
+
 }
-
-
-
-/*
- *
- *  Ctrl + Alt + L ==> Format File Code
- *  ---------------- **
- *
- *
- *
- *
- *
- *
- *
- *
- *  ---------------- **
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- * */
 

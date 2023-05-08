@@ -18,6 +18,8 @@ public class EmployeeServices {
 
 
     /* DB Methods */
+
+    // a => Retrieving Methods:
     public List<Employee> getAllEmployees() {
         return employeeRepo.findAll();
     }
@@ -27,12 +29,30 @@ public class EmployeeServices {
         return employeeRepo.findById(id).orElseThrow(null);
     }
 
-    public List<Employee> findEmployeeByFirstName (String firstName) {
+    public List<Employee> findEmployeeByFirstName(String firstName) {
         return employeeRepo.findByFirstName(firstName);
     }
 
-    public List<Employee> employeeSearch(String firstName, String lastName){
+    public List<Employee> employeeSearch(String firstName, String lastName) {
         return employeeRepo.empSearch(firstName, lastName);
-    };
+    }
+
+    ;
+
+    // b => Inserting Methods:
+    public void addNewEmp(Employee newEmp) {
+        employeeRepo.save(newEmp); // used to save/updated the data to the DB.
+    }
+
+    // c => Update Methods:
+    public void updateEmp(Employee emp) {
+        employeeRepo.save(emp);
+    }
+
+    // d => Delete Methods:
+    public void deleteEmp(long id) {
+        employeeRepo.deleteById(id);
+    }
+
 }
 
