@@ -19,6 +19,8 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
     public List<Employee> findByFirstName(String firstName);
     // findByFirstNameOrLastName => Spring Boot convert that MethodSignature to appropriate SQLQuery.
 
+    public List<Employee> findByDepartmentId (long departmentId);
+
 
     /* 3. JPQL =>> Java Persistence Query Language */
     @Query("SELECT emp FROM Employee emp WHERE emp.firstName = :firstNameBind AND emp.lastName = :lastNameBind")
@@ -38,7 +40,12 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
     public List<Employee> findAllEmployeesNative();
 
 
+
+
+
 }
+
+
 
 /*
  * The Repository can extends:

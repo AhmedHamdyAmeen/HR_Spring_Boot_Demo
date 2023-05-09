@@ -60,9 +60,15 @@ public class EmployeeController {
         return employeeServices.employeeSearch(firstName, lastName);
     }
 
+    @GetMapping("/departments/{deptId}/employees") // Get DepartmentEmployees
+    // ToDo: "/departments/{deptId}/employees/{empId}" add Controller search about
+    //  specific Employee in specific Department.
+    public List<Employee> getDepartmentEmployees(@PathVariable(name = "deptId") long id) {
+        return employeeServices.getDepartmentEmployees(id);
+    }
 
     // => Posting Controller Methods:
-    @PostMapping("employee/addNewEmp")
+    @PostMapping("/employee/addNewEmp")
     public String addNewEmp(@RequestBody Employee newEmp) {
         // ToDo: Check If the Emp Saved or Not. f
         // try {} catch () {}
@@ -76,7 +82,7 @@ public class EmployeeController {
     }
 
     // => Updating Controller Methods:
-    @PutMapping("employee/updateEmp")
+    @PutMapping("/employee/updateEmp")
     public String updateEmp(@RequestBody Employee emp) {
         employeeServices.updateEmp(emp);
 
@@ -84,7 +90,7 @@ public class EmployeeController {
     }
 
     // => Deleting Controller Methods:
-    @DeleteMapping("employee/{id}")
+    @DeleteMapping("/employee/{id}")
     public String removeEmp(@PathVariable(name = "id") long id) {
         employeeServices.deleteEmp(id);
 

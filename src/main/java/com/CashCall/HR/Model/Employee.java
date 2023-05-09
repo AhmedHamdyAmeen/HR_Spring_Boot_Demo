@@ -3,6 +3,8 @@ package com.CashCall.HR.Model;
 
 import jakarta.persistence.*; // JPA
 
+import javax.swing.plaf.basic.DefaultMenuLayout;
+
 @Entity
 @Table(name = "Employees")
 public class Employee {
@@ -18,17 +20,26 @@ public class Employee {
     @Column(name = "address")
     private String address;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id ")
+    private Department department;
+
 
     /* Constructors */
-    public Employee() {};
+    public Employee() {
+    }
 
-    public Employee(long id, String firstName, String lastName, Double salary, String address) {
+
+    public Employee(long id, String firstName, String lastName, Double salary, String address, Department department) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        Salary = salary;
+        this.Salary = salary;
         this.address = address;
+        this.department = department;
     }
+
+    
     /* Getter & Setters */
 
     public long getId() {
@@ -69,5 +80,13 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

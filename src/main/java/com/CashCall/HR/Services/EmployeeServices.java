@@ -24,6 +24,9 @@ public class EmployeeServices {
         return employeeRepo.findAll();
     }
 
+    public List<Employee> getDepartmentEmployees (long deptId) {
+        return employeeRepo.findByDepartmentId(deptId);
+    }
 
     public Employee findEmployeeByID(Long id) {
         return employeeRepo.findById(id).orElseThrow(null);
@@ -37,7 +40,6 @@ public class EmployeeServices {
         return employeeRepo.empSearch(firstName, lastName);
     }
 
-    ;
 
     // b => Inserting Methods:
     public void addNewEmp(Employee newEmp) {
