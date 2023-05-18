@@ -57,5 +57,11 @@ public class Department {
  * 1:M
  * put the PK of the one-side as a FK in the many-side.
  *
+ * Many-part will be the Holder of the Relationship.
+ * So, the FK will be created from the Many-side (Employee Side).
+ *--------
+ * OOP-based Framework
+ *
+ *
  *
  * */

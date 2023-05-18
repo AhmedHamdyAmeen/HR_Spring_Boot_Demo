@@ -6,6 +6,7 @@ import com.CashCall.HR.Services.EmployeeServices;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -17,6 +18,14 @@ import java.util.List;
 @RequestMapping("api/v1")
 public class EmployeeController {
 
+    @Value("${project.path}")
+    String filePath;
+
+    @Value("${spring.application.name}")
+    String appName;
+
+
+
     private final Logger log = LoggerFactory.getLogger(HrApplication.class);
 
     /* Dependencies */
@@ -27,8 +36,9 @@ public class EmployeeController {
     /* Controller Methods */
 
     // => Retrieving Controller Methods:
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public List<Employee> getAllEmployees() {
+        System.out.println("App Name is: " + appName + ", FilePath is: "+ filePath );
         return employeeServices.getAllEmployees();
     }
 
@@ -99,3 +109,20 @@ public class EmployeeController {
 
 }
 
+/*
+*
+*
+* MyBatis
+*
+* Repository
+* Mapper
+*
+*
+*
+*
+*
+*
+*
+*
+*
+* */

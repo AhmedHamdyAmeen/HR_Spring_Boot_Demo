@@ -4,6 +4,7 @@ package com.CashCall.HR.Model;
 import jakarta.persistence.*; // JPA
 
 import javax.swing.plaf.basic.DefaultMenuLayout;
+import java.util.Date;
 
 @Entity
 @Table(name = "Employees")
@@ -19,6 +20,17 @@ public class Employee {
     private Double Salary;
     @Column(name = "address")
     private String address;
+
+    @Column(name = "phone_number")
+    private String phoneNum;
+    @Column(name = "hire_date")
+    private Date hireDate;
+    @Column(name = "job_id")
+    private String jobId;
+    @Column(name = "commission_pct")
+    private Double commPct;
+    @Column(name = "manager_id")
+    private Long mangerId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id ")
@@ -39,7 +51,7 @@ public class Employee {
         this.department = department;
     }
 
-    
+
     /* Getter & Setters */
 
     public long getId() {
