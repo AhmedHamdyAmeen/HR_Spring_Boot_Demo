@@ -3,14 +3,16 @@ package com.CashCall.HR.Controllers;
 import com.CashCall.HR.HrApplication;
 import com.CashCall.HR.Model.Employee;
 import com.CashCall.HR.Services.EmployeeServices;
+import jakarta.validation.Valid;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +27,6 @@ public class EmployeeController {
     String appName;
 
 
-
     private final Logger log = LoggerFactory.getLogger(HrApplication.class);
 
     /* Dependencies */
@@ -38,7 +39,7 @@ public class EmployeeController {
     // => Retrieving Controller Methods:
     @GetMapping("/employees")
     public List<Employee> getAllEmployees() {
-        System.out.println("App Name is: " + appName + ", FilePath is: "+ filePath );
+        System.out.println("App Name is: " + appName + ", FilePath is: " + filePath);
         return employeeServices.getAllEmployees();
     }
 
@@ -79,13 +80,16 @@ public class EmployeeController {
 
     // => Posting Controller Methods:
     @PostMapping("/employee/addNewEmp")
-    public String addNewEmp(@RequestBody Employee newEmp) {
+    public ResponseEntity<Employee> addNewEmp(@Valid @RequestBody Employee newEmp) {
         // ToDo: Check If the Emp Saved or Not. f
         // try {} catch () {}
 
         employeeServices.addNewEmp(newEmp);
 
-        return "Employee: " + newEmp.getFirstName() + " Saved Successfully";
+//        return "Employee: " + newEmp.getFirstName() + " Saved Successfully";
+        return new ResponseEntity<Employee>(newEmp, HttpStatus.OK);
+//        return ResponseEntity.ok(newEmp);
+
         /*
          * Note: We use the @RequestBody Annotation with the POST method's Requests.
          * */
@@ -93,10 +97,11 @@ public class EmployeeController {
 
     // => Updating Controller Methods:
     @PutMapping("/employee/updateEmp")
-    public String updateEmp(@RequestBody Employee emp) {
+    public ResponseEntity<Employee> updateEmp(@Valid @RequestBody Employee emp) {
         employeeServices.updateEmp(emp);
 
-        return "Employee: " + emp.getFirstName() + " Updated Successfully";
+//        return "Employee: " + emp.getFirstName() + " Updated Successfully";
+        return new ResponseEntity<Employee>(emp, HttpStatus.OK);
     }
 
     // => Deleting Controller Methods:
@@ -110,19 +115,8 @@ public class EmployeeController {
 }
 
 /*
-*
-*
-* MyBatis
-*
-* Repository
-* Mapper
-*
-*
-*
-*
-*
-*
-*
-*
-*
-* */
+ *
+ *
+ *
+ *
+ * */
